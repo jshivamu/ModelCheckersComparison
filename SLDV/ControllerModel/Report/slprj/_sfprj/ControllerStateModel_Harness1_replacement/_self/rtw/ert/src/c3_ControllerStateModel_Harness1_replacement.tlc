@@ -1,0 +1,53 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   5 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "count_stall_recov"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "count_stall_recov"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "count_climb"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "count_climb"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "count_normal"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "count_normal"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_active_c3_ControllerStateModel_Harness1_replacement"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_c3_ControllerStateModel_Harness1_replacement"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

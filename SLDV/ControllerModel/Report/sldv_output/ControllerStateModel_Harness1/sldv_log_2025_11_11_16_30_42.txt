@@ -1,0 +1,31 @@
+
+11-Nov-2025 16:27:27
+Preprocessing model...done
+Checking compatibility for property proving: model 'ControllerStateModel_Harness1'
+Compiling model...done
+Building model representation...done
+
+11-Nov-2025 16:27:44
+'ControllerStateModel_Harness1_replacement' is compatible for property proving with Simulink Design Verifier.
+
+
+Proving properties using model representation from 11-Nov-2025 16:27:44...
+
+FALSIFIED
+Assertion
+Assert
+Analysis Time = 00:02:55
+
+
+11-Nov-2025 16:30:41
+
+Completed normally.
+
+Generating output files:
+
+11-Nov-2025 16:30:42
+Results generation completed.
+
+    Data file:
+    D:\ControllerModel\Report\sldv_output\ControllerStateModel_Harness1\ControllerStateModel_Harness1_sldvdata.mat
+

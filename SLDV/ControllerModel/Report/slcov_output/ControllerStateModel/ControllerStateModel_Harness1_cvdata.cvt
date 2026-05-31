@@ -1,0 +1,1366 @@
+CV_Database {
+  modelcov {
+    id			    1
+    name		    "ControllerStateModel_Harness1@(R2024b)"
+    unmangledName	    "ControllerStateModel_Harness1"
+    dbVersion		    "(R2024b)"
+    ownerModel		    "ControllerStateModel"
+    ownerBlock		    "ControllerStateModel"
+    harnessModel	    "ControllerStateModel_Harness1"
+    canHarnessMapBackToOwner 1
+    refModelcovIds	    [2]
+    topModelcovId	    [1]
+  }
+  modelcov {
+    id			    2
+    name		    "ControllerStateModel@(R2024b)"
+    unmangledName	    "ControllerStateModel"
+    dbVersion		    "(R2024b)"
+    ownerModel		    "ControllerStateModel"
+    ownerBlock		    "ControllerStateModel"
+    harnessModel	    "ControllerStateModel_Harness1"
+    canHarnessMapBackToOwner 1
+    topModelcovId	    [1]
+    rootTree		    [0 3 0 0]
+  }
+  root {
+    id			    3
+    modelcov		    2
+    topSlsf		    10
+    firstTest		    4
+    treeNode		    [2 0 0 0]
+    checksum		    [1612276210 2933592747 959297224 627674142]
+    structuralChecksum	    [3370246206 3529847292 107543143 3543402762]
+    metricChecksum	    [0 0 0 0 356628808 3421897367 2446639478 3563413827 0 0 0 0]
+    dataSize		    [75 0 0 0 36 0 0]
+  }
+  testdata {
+    id			    4
+    modelcov		    2
+    ownerBlock		    "ControllerStateModel"
+    ownerModel		    "ControllerStateModel"
+    harnessModel	    "ControllerStateModel_Harness1"
+    uniqueId		    "fb712164-6be2-4e53-93d4-9cbdedabde12"
+    linkNode		    [3 0 0]
+    type		    DLGENABLED_TST
+    modelVersion	    "1.34"
+    creator		    "MBD_PRO"
+    lastModifiedDate	    "Tue Nov 11 16:27:19 2025"
+    blockReductionStatus    "forcedOff"
+    defaultParameterBehavior "Tunable"
+    dbVersion		    "(R2024b)"
+    dbversionToRestore	    "(R2024b)"
+    conditionallyExecuteInputs 1
+    startTime		    739932.6879597801
+    stopTime		    739932.6879644676
+    simStopTime		    0.22
+    testobjectives	    [0 0 0 0 0 0 0 5 6 7 8 0 0 9]
+    mcdcMode		    1
+    mldref_enable	    "on"
+    mldref_excludeTopModel  1
+    covExternalEMLEnable    1
+    forceBlockReductionOff  1
+    covBoundaryRelTol	    0.01
+    covBoundaryAbsTol	    1e-05
+  }
+  metricdata {
+    id			    5
+    metricenumValue	    8
+    metricName		    "cvmetric_Sldv_test"
+  }
+  metricdata {
+    id			    6
+    metricenumValue	    9
+    metricName		    "cvmetric_Sldv_proof"
+  }
+  metricdata {
+    id			    7
+    metricenumValue	    10
+    metricName		    "cvmetric_Sldv_condition"
+  }
+  metricdata {
+    id			    8
+    metricenumValue	    11
+    metricName		    "cvmetric_Sldv_assumption"
+  }
+  metricdata {
+    id			    9
+    metricenumValue	    14
+    metricName		    "cvmetric_Structural_block"
+  }
+  slsfobj {
+    id			    10
+    name		    "ControllerStateModel"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [0 11 0 0]
+    metricFlags		    8273
+    metrics		    [31 32 33 34]
+    hiddenSubSysHandle	    1080.005859375
+    cvChecksum {
+      u1		      1612276210
+      u2		      2933592747
+      u3		      959297224
+      u4		      627674142
+    }
+    cvStructuralChecksum    [3370246206 3529847292 107543143 3543402762]
+    cvMetricChecksum	    [356628808 3421897367 2446639478 3563413827 0 0 0 0]
+  }
+  slsfobj {
+    id			    11
+    name		    "CSU_Title"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [10 12 0 13]
+    cvChecksum {
+      u1		      573760003
+      u2		      3721848266
+      u3		      655736823
+      u4		      3142089863
+    }
+    cvStructuralChecksum    [573760003 3721848266 655736823 3142089863]
+  }
+  slsfobj {
+    id			    12
+    name		    "EmptySubsystem"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [11 0 0 0]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  slsfobj {
+    id			    13
+    name		    "ControllerModel"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [10 14 11 28]
+    metricFlags		    8273
+    metrics		    [35 36 37 38]
+    cvChecksum {
+      u1		      1887104
+      u2		      1676949230
+      u3		      2805492278
+      u4		      695022030
+    }
+    cvStructuralChecksum    [3582158568 2607847161 1401252082 4062389245]
+    cvMetricChecksum	    [1486516076 2709803700 1938383878 441542438 0 0 0 0]
+  }
+  slsfobj {
+    id			    14
+    name		    "Controller"
+    origin		    SIMULINK_OBJ
+    isAtomicSubsytem	    1
+    modelcov		    2
+    treeNode		    [13 15 0 0]
+    metricFlags		    8273
+    metrics		    [39 40 41 42]
+    cvChecksum {
+      u1		      3455991040
+      u2		      4249662486
+      u3		      2406579607
+      u4		      4170504516
+    }
+    cvStructuralChecksum    [2020610067 577199049 4133572869 3993215964]
+    cvMetricChecksum	    [688466715 562788022 38208437 528854993 0 0 0 0]
+  }
+  slsfobj {
+    id			    15
+    name		    " Demux "
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [14 0 0 16]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  slsfobj {
+    id			    16
+    name		    " SFunction "
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [14 0 15 17]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  slsfobj {
+    id			    17
+    name		    " Terminator "
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [14 0 16 18]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  slsfobj {
+    id			    18
+    name		    "Controller"
+    origPath		    "ControllerStateModel:9"
+    origin		    STATEFLOW_OBJ
+    refClass		    1
+    modelcov		    2
+    treeNode		    [14 19 17 0]
+    metricFlags		    8273
+    metrics		    [43 44 45 46]
+    cvChecksum {
+      u1		      2803033282
+      u2		      376720013
+      u3		      2582614547
+      u4		      3569470665
+    }
+    cvStructuralChecksum    [504443563 1829917495 3455353754 939827950]
+    cvMetricChecksum	    [1117099464 552052116 2662621617 1411409354 0 0 0 0]
+  }
+  slsfobj {
+    id			    19
+    name		    "Climb"
+    origin		    STATEFLOW_OBJ
+    refClass		    4
+    modelcov		    2
+    treeNode		    [18 0 0 20]
+    metricFlags		    8257
+    metrics		    [52 53 54]
+    code		    87
+    cvChecksum {
+      u1		      1998777942
+      u2		      183737801
+      u3		      409415000
+      u4		      192923884
+    }
+    cvStructuralChecksum    [1318742115 573565566 2235293007 2941837870]
+    cvMetricChecksum	    [760466209 3880523573 3967164077 1338673560 0 0 0 0]
+  }
+  slsfobj {
+    id			    20
+    name		    "Normal"
+    origin		    STATEFLOW_OBJ
+    refClass		    4
+    modelcov		    2
+    treeNode		    [18 0 19 21]
+    metricFlags		    8257
+    metrics		    [88 89 90]
+    code		    123
+    cvChecksum {
+      u1		      377621943
+      u2		      2957146243
+      u3		      4048249164
+      u4		      2250527183
+    }
+    cvStructuralChecksum    [2188640262 163195364 4197247899 2407303803]
+    cvMetricChecksum	    [3967959574 353593027 3994881211 369467367 0 0 0 0]
+  }
+  slsfobj {
+    id			    21
+    name		    "StallRecovery"
+    origin		    STATEFLOW_OBJ
+    refClass		    4
+    modelcov		    2
+    treeNode		    [18 0 20 22]
+    metricFlags		    8257
+    metrics		    [124 125 126]
+    code		    143
+    cvChecksum {
+      u1		      373773964
+      u2		      2463714440
+      u3		      3808111555
+      u4		      10453326
+    }
+    cvStructuralChecksum    [2881942905 4183626031 3730505348 3794703580]
+    cvMetricChecksum	    [3797548986 2549247691 4094136177 2932259470 0 0 0 0]
+  }
+  slsfobj {
+    id			    22
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [18 0 21 23]
+    code		    144
+    cvChecksum {
+      u1		      555668416
+      u2		      1955580048
+      u3		      3865771421
+      u4		      2562474511
+    }
+    cvStructuralChecksum    [555668416 1955580048 3865771421 2562474511]
+  }
+  slsfobj {
+    id			    23
+    name		    "[Controller_State_Out == Controller.StallRecovery]"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [18 0 22 24]
+    metricFlags		    65
+    metrics		    [145 146]
+    code		    151
+    cvChecksum {
+      u1		      3903981950
+      u2		      1371551989
+      u3		      4127620272
+      u4		      2089201247
+    }
+    cvStructuralChecksum    [3903981950 1371551989 4127620272 2089201247]
+  }
+  slsfobj {
+    id			    24
+    name		    "[Controller_State_Out == Controller.StallRecovery]"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [18 0 23 25]
+    metricFlags		    65
+    metrics		    [152 153]
+    code		    158
+    cvChecksum {
+      u1		      3903981950
+      u2		      1371551989
+      u3		      4127620272
+      u4		      2089201247
+    }
+    cvStructuralChecksum    [3903981950 1371551989 4127620272 2089201247]
+  }
+  slsfobj {
+    id			    25
+    name		    "[Controller_State_Out == Controller.Climb]"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [18 0 24 26]
+    metricFlags		    65
+    metrics		    [159 160]
+    code		    165
+    cvChecksum {
+      u1		      1414969123
+      u2		      580171058
+      u3		      3183101427
+      u4		      1171628263
+    }
+    cvStructuralChecksum    [1414969123 580171058 3183101427 1171628263]
+  }
+  slsfobj {
+    id			    26
+    name		    "[Controller_State_Out == Controller.Normal]"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [18 0 25 27]
+    metricFlags		    65
+    metrics		    [166 167]
+    code		    172
+    cvChecksum {
+      u1		      4182202878
+      u2		      1409704523
+      u3		      1059464999
+      u4		      2212500399
+    }
+    cvStructuralChecksum    [4182202878 1409704523 1059464999 2212500399]
+  }
+  slsfobj {
+    id			    27
+    name		    "[Controller_State_Out == Controller.Normal]"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [18 0 26 0]
+    metricFlags		    65
+    metrics		    [173 174]
+    code		    179
+    cvChecksum {
+      u1		      4182202878
+      u2		      1409704523
+      u3		      1059464999
+      u4		      2212500399
+    }
+    cvStructuralChecksum    [4182202878 1409704523 1059464999 2212500399]
+  }
+  slsfobj {
+    id			    28
+    name		    "ModelColorCoding"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [10 0 13 29]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  slsfobj {
+    id			    29
+    name		    "Notes"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [10 30 28 0]
+    cvChecksum {
+      u1		      573760003
+      u2		      3721848266
+      u3		      655736823
+      u4		      3142089863
+    }
+    cvStructuralChecksum    [573760003 3721848266 655736823 3142089863]
+  }
+  slsfobj {
+    id			    30
+    name		    "EmptySubsystem"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [29 0 0 0]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  metric {
+    id			    31
+    dataIdx		    [0 -1]
+    justifiedDataIdx	    [1 0]
+    dataCnt		    [33 0 -1 -1]
+    dataWidth		    76
+  }
+  metric {
+    id			    32
+  }
+  metric {
+    id			    33
+    dataCnt		    [19 1 0 0]
+  }
+  metric {
+    id			    34
+  }
+  metric {
+    id			    35
+    dataIdx		    [2 -1]
+    justifiedDataIdx	    [3 0]
+    dataCnt		    [33 0 -1 -1]
+    dataWidth		    74
+  }
+  metric {
+    id			    36
+  }
+  metric {
+    id			    37
+    dataCnt		    [18 0 0 0]
+  }
+  metric {
+    id			    38
+  }
+  metric {
+    id			    39
+    dataIdx		    [4 -1]
+    justifiedDataIdx	    [5 0]
+    dataCnt		    [33 0 -1 -1]
+    dataWidth		    72
+  }
+  sigranger {
+    id			    40
+    modelcov		    2
+    slsfobj		    14
+    cov			    [0 3 1 1 1 3 0 0 0]
+  }
+  metric {
+    id			    41
+    dataIdx		    [1 1]
+    dataCnt		    [18 1 0 0]
+  }
+  metric {
+    id			    42
+  }
+  metric {
+    id			    43
+    baseObjs		    [47]
+    dataIdx		    [8 6]
+    justifiedDataIdx	    [9 7]
+    dataCnt		    [33 3 -1 -1]
+    dataWidth		    70
+  }
+  sigranger {
+    id			    44
+    modelcov		    2
+    cov			    [6 15 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+  }
+  metric {
+    id			    45
+    dataCnt		    [17 2 0 0]
+  }
+  metric {
+    id			    46
+  }
+  decision {
+    id			    47
+    modelcov		    2
+    slsfobj		    18
+    descriptor		    48
+    outMsgs		    [49 50 51]
+    dc			    [3 0 10 0]
+  }
+  message {
+    id			    48
+    keyNum		    16
+    startChar		    -1
+  }
+  message {
+    id			    49
+    keyNum		    160
+    objParams		    [19]
+    startChar		    -1
+  }
+  message {
+    id			    50
+    keyNum		    160
+    objParams		    [20]
+    startChar		    -1
+  }
+  message {
+    id			    51
+    keyNum		    160
+    objParams		    [21]
+    startChar		    -1
+  }
+  metric {
+    id			    52
+    baseObjs		    [55 56 57 58]
+    dataIdx		    [15 13]
+    justifiedDataIdx	    [16 14]
+    dataCnt		    [8 8 -1 -1]
+    dataWidth		    13
+  }
+  metric {
+    id			    53
+    dataCnt		    [4 4 0 0]
+  }
+  metric {
+    id			    54
+    baseObjs		    [71 72 73 74]
+  }
+  decision {
+    id			    55
+    modelcov		    2
+    slsfobj		    19
+    descriptor		    59
+    outMsgs		    [60 61]
+    dc			    [2 0 17 0]
+  }
+  decision {
+    id			    56
+    modelcov		    2
+    slsfobj		    19
+    descriptor		    62
+    outMsgs		    [63 64]
+    dc			    [2 0 19 0]
+  }
+  decision {
+    id			    57
+    modelcov		    2
+    slsfobj		    19
+    descriptor		    65
+    outMsgs		    [66 67]
+    dc			    [2 0 21 0]
+  }
+  decision {
+    id			    58
+    modelcov		    2
+    slsfobj		    19
+    descriptor		    68
+    outMsgs		    [69 70]
+    dc			    [2 0 23 0]
+  }
+  message {
+    id			    59
+    keyNum		    164
+    startChar		    144
+    length		    35
+  }
+  message {
+    id			    60
+    keyNum		    159
+    startChar		    324
+    length		    31
+  }
+  message {
+    id			    61
+    keyNum		    158
+    startChar		    179
+    length		    145
+  }
+  message {
+    id			    62
+    keyNum		    164
+    startChar		    183
+    length		    33
+  }
+  message {
+    id			    63
+    keyNum		    159
+    startChar		    270
+    length		    54
+  }
+  message {
+    id			    64
+    keyNum		    158
+    startChar		    216
+    length		    54
+  }
+  message {
+    id			    65
+    keyNum		    164
+    startChar		    404
+    length		    33
+  }
+  message {
+    id			    66
+    keyNum		    159
+    startChar		    604
+    length		    36
+  }
+  message {
+    id			    67
+    keyNum		    158
+    startChar		    437
+    length		    167
+  }
+  message {
+    id			    68
+    keyNum		    164
+    startChar		    441
+    length		    38
+  }
+  message {
+    id			    69
+    keyNum		    159
+    startChar		    540
+    length		    64
+  }
+  message {
+    id			    70
+    keyNum		    158
+    startChar		    479
+    length		    61
+  }
+  decision {
+    id			    71
+    modelcov		    2
+    slsfobj		    19
+    descriptor		    75
+    outMsgs		    [76 77]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    72
+    modelcov		    2
+    slsfobj		    19
+    relopChkExprIdx	    1
+    descriptor		    78
+    outMsgs		    [79 80]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    73
+    modelcov		    2
+    slsfobj		    19
+    relopChkExprIdx	    2
+    descriptor		    81
+    outMsgs		    [82 83]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    74
+    modelcov		    2
+    slsfobj		    19
+    relopChkExprIdx	    3
+    descriptor		    84
+    outMsgs		    [85 86]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    75
+    keyNum		    162
+    intParams		    [147 178]
+    txtParams		    "Actual_Alt_In - Ref_Altitude_In"
+    startChar		    147
+    length		    32
+  }
+  message {
+    id			    76
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    77
+    keyNum		    41
+    startChar		    -1
+  }
+  message {
+    id			    78
+    keyNum		    162
+    intParams		    [187 214]
+    txtParams		    "count_normal - PERSISTENCT"
+    startChar		    187
+    length		    28
+  }
+  message {
+    id			    79
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    80
+    keyNum		    42
+    startChar		    -1
+  }
+  message {
+    id			    81
+    keyNum		    162
+    intParams		    [407 436]
+    txtParams		    "Actual_Speed_In - STALL_SPEED"
+    startChar		    407
+    length		    30
+  }
+  message {
+    id			    82
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    83
+    keyNum		    42
+    startChar		    -1
+  }
+  message {
+    id			    84
+    keyNum		    162
+    intParams		    [445 477]
+    txtParams		    "count_stall_recov - PERSISTENCT"
+    startChar		    445
+    length		    33
+  }
+  message {
+    id			    85
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    86
+    keyNum		    42
+    startChar		    -1
+  }
+  codeblock {
+    id			    87
+    slsfobj		    19
+    code		    "Climb\nentry:\nController_State_Out = Controller.Climb\ncount_stall_recov = 1;\ncount_normal = 1;\nduri"
+    "ng:\n%\n% Transition from state Climb to Normal\nif Actual_Alt_In > Ref_Altitude_In\n    if (count_normal >= PERSI"
+    "STENCT)\n        Controller_State_Out = Controller.Normal;\n    else\n        count_normal = count_normal + 1;\n  "
+    "  end\nelse\n    count_normal = 1;\nend\n%\n% Transition from state Climb to StallRecovery\nif Actual_Speed_In < S"
+    "TALL_SPEED\n    if (count_stall_recov >= PERSISTENCT)\n        Controller_State_Out = Controller.StallRecovery;\n "
+    "   else\n        count_stall_recov = count_stall_recov + 1;\n    end\nelse\n    count_stall_recov = 1;\nend\n%\n% "
+    "Computation\nPitch_Cmd_Out = CLIMB_PITCH_CMD;\nEngn_Throttle_Out = 100.0;\nexit:"
+    totalNumOfObjs	    [4 0 0 0]
+  }
+  metric {
+    id			    88
+    baseObjs		    [91 92 93 94]
+    dataIdx		    [27 25]
+    justifiedDataIdx	    [28 26]
+    dataCnt		    [8 8 -1 -1]
+    dataWidth		    13
+  }
+  metric {
+    id			    89
+    dataCnt		    [4 4 0 0]
+  }
+  metric {
+    id			    90
+    baseObjs		    [107 108 109 110]
+  }
+  decision {
+    id			    91
+    modelcov		    2
+    slsfobj		    20
+    descriptor		    95
+    outMsgs		    [96 97]
+    dc			    [2 0 29 0]
+  }
+  decision {
+    id			    92
+    modelcov		    2
+    slsfobj		    20
+    descriptor		    98
+    outMsgs		    [99 100]
+    dc			    [2 0 31 0]
+  }
+  decision {
+    id			    93
+    modelcov		    2
+    slsfobj		    20
+    descriptor		    101
+    outMsgs		    [102 103]
+    dc			    [2 0 33 0]
+  }
+  decision {
+    id			    94
+    modelcov		    2
+    slsfobj		    20
+    descriptor		    104
+    outMsgs		    [105 106]
+    dc			    [2 0 35 0]
+  }
+  message {
+    id			    95
+    keyNum		    164
+    startChar		    146
+    length		    56
+  }
+  message {
+    id			    96
+    keyNum		    159
+    startChar		    343
+    length		    30
+  }
+  message {
+    id			    97
+    keyNum		    158
+    startChar		    202
+    length		    141
+  }
+  message {
+    id			    98
+    keyNum		    164
+    startChar		    206
+    length		    32
+  }
+  message {
+    id			    99
+    keyNum		    159
+    startChar		    291
+    length		    52
+  }
+  message {
+    id			    100
+    keyNum		    158
+    startChar		    238
+    length		    53
+  }
+  message {
+    id			    101
+    keyNum		    164
+    startChar		    423
+    length		    33
+  }
+  message {
+    id			    102
+    keyNum		    159
+    startChar		    623
+    length		    36
+  }
+  message {
+    id			    103
+    keyNum		    158
+    startChar		    456
+    length		    167
+  }
+  message {
+    id			    104
+    keyNum		    164
+    startChar		    460
+    length		    38
+  }
+  message {
+    id			    105
+    keyNum		    159
+    startChar		    559
+    length		    64
+  }
+  message {
+    id			    106
+    keyNum		    158
+    startChar		    498
+    length		    61
+  }
+  decision {
+    id			    107
+    modelcov		    2
+    slsfobj		    20
+    descriptor		    111
+    outMsgs		    [112 113]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    108
+    modelcov		    2
+    slsfobj		    20
+    relopChkExprIdx	    1
+    descriptor		    114
+    outMsgs		    [115 116]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    109
+    modelcov		    2
+    slsfobj		    20
+    relopChkExprIdx	    2
+    descriptor		    117
+    outMsgs		    [118 119]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    110
+    modelcov		    2
+    slsfobj		    20
+    relopChkExprIdx	    3
+    descriptor		    120
+    outMsgs		    [121 122]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    111
+    keyNum		    162
+    intParams		    [150 200]
+    txtParams		    "(Ref_Altitude_In-Actual_Alt_In) - ALT_THRESHOLD"
+    startChar		    150
+    length		    51
+  }
+  message {
+    id			    112
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    113
+    keyNum		    42
+    startChar		    -1
+  }
+  message {
+    id			    114
+    keyNum		    162
+    intParams		    [210 236]
+    txtParams		    "count_climb - PERSISTENCT"
+    startChar		    210
+    length		    27
+  }
+  message {
+    id			    115
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    116
+    keyNum		    42
+    startChar		    -1
+  }
+  message {
+    id			    117
+    keyNum		    162
+    intParams		    [426 455]
+    txtParams		    "Actual_Speed_In - STALL_SPEED"
+    startChar		    426
+    length		    30
+  }
+  message {
+    id			    118
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    119
+    keyNum		    42
+    startChar		    -1
+  }
+  message {
+    id			    120
+    keyNum		    162
+    intParams		    [464 496]
+    txtParams		    "count_stall_recov - PERSISTENCT"
+    startChar		    464
+    length		    33
+  }
+  message {
+    id			    121
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    122
+    keyNum		    42
+    startChar		    -1
+  }
+  codeblock {
+    id			    123
+    slsfobj		    20
+    code		    "Normal\nentry:\nController_State_Out = Controller.Normal;\ncount_stall_recov = 1;\ncount_climb = 1;\ndu"
+    "ring:\n%\n% Transition from state Normal to Climb\nif ((Ref_Altitude_In - Actual_Alt_In) >= ALT_THRESHOLD)\n    if"
+    " (count_climb >= PERSISTENCT)\n        Controller_State_Out = Controller.Climb;\n    else\n        count_climb = c"
+    "ount_climb + 1;\n    end\nelse\n    count_climb = 1;\nend\n%\n% Transition from state Normal to StallRecovery\nif "
+    "Actual_Speed_In < STALL_SPEED\n    if (count_stall_recov >= PERSISTENCT)\n        Controller_State_Out = Controlle"
+    "r.StallRecovery;\n    else\n        count_stall_recov = count_stall_recov + 1;\n    end\nelse\n    count_stall_rec"
+    "ov = 1;\nend\n%\n% Computation\nPitch_Cmd_Out = (Ref_Altitude_In - Actual_Alt_In) * GAIN;\nEngn_Throttle_Out = (Re"
+    "f_Speed_In - Actual_Speed_In) * GAIN;\nexit:\n"
+    totalNumOfObjs	    [4 0 0 0]
+  }
+  metric {
+    id			    124
+    baseObjs		    [127 128]
+    dataIdx		    [39 37]
+    justifiedDataIdx	    [40 38]
+    dataCnt		    [4 4 -1 -1]
+    dataWidth		    9
+  }
+  metric {
+    id			    125
+    dataCnt		    [2 2 0 0]
+  }
+  metric {
+    id			    126
+    baseObjs		    [135 136]
+  }
+  decision {
+    id			    127
+    modelcov		    2
+    slsfobj		    21
+    descriptor		    129
+    outMsgs		    [130 131]
+    dc			    [2 0 41 0]
+  }
+  decision {
+    id			    128
+    modelcov		    2
+    slsfobj		    21
+    descriptor		    132
+    outMsgs		    [133 134]
+    dc			    [2 0 43 0]
+  }
+  message {
+    id			    129
+    keyNum		    164
+    startChar		    142
+    length		    33
+  }
+  message {
+    id			    130
+    keyNum		    159
+    startChar		    317
+    length		    30
+  }
+  message {
+    id			    131
+    keyNum		    158
+    startChar		    175
+    length		    142
+  }
+  message {
+    id			    132
+    keyNum		    164
+    startChar		    179
+    length		    32
+  }
+  message {
+    id			    133
+    keyNum		    159
+    startChar		    265
+    length		    52
+  }
+  message {
+    id			    134
+    keyNum		    158
+    startChar		    211
+    length		    54
+  }
+  decision {
+    id			    135
+    modelcov		    2
+    slsfobj		    21
+    descriptor		    137
+    outMsgs		    [138 139]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    136
+    modelcov		    2
+    slsfobj		    21
+    relopChkExprIdx	    1
+    descriptor		    140
+    outMsgs		    [141 142]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    137
+    keyNum		    162
+    intParams		    [145 174]
+    txtParams		    "Actual_Speed_In - STALL_SPEED"
+    startChar		    145
+    length		    30
+  }
+  message {
+    id			    138
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    139
+    keyNum		    41
+    startChar		    -1
+  }
+  message {
+    id			    140
+    keyNum		    162
+    intParams		    [183 209]
+    txtParams		    "count_climb - PERSISTENCT"
+    startChar		    183
+    length		    27
+  }
+  message {
+    id			    141
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    142
+    keyNum		    42
+    startChar		    -1
+  }
+  codeblock {
+    id			    143
+    slsfobj		    21
+    code		    "StallRecovery\nentry:\nController_State_Out = Controller.StallRecovery\ncount_climb = 1;\nduring:\n% Tr"
+    "ansition from state StallRecovery to Normal\nif Actual_Speed_In > STALL_SPEED\n    if (count_climb >= PERSISTENCT)"
+    "\n        Controller_State_Out = Controller.Normal;\n    else\n        count_climb = count_climb + 1;\n    end\nel"
+    "se\n    count_climb = 1;\nend\n% Computation\nPitch_Cmd_Out = 0.0;\nEngn_Throttle_Out = 100.0;\nexit:"
+    totalNumOfObjs	    [2 0 0 0]
+  }
+  codeblock {
+    id			    144
+    slsfobj		    22
+  }
+  metric {
+    id			    145
+    baseObjs		    [147]
+    dataIdx		    [47 45]
+    justifiedDataIdx	    [48 46]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    146
+    dataCnt		    [1 1 0 0]
+  }
+  decision {
+    id			    147
+    modelcov		    2
+    slsfobj		    23
+    descriptor		    148
+    outMsgs		    [149 150]
+    dc			    [2 0 49 0]
+  }
+  message {
+    id			    148
+    keyNum		    164
+    startChar		    1
+    length		    49
+  }
+  message {
+    id			    149
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    150
+    keyNum		    158
+    startChar		    50
+  }
+  codeblock {
+    id			    151
+    slsfobj		    23
+    code		    "[Controller_State_Out == Controller.StallRecovery]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  metric {
+    id			    152
+    baseObjs		    [154]
+    dataIdx		    [53 51]
+    justifiedDataIdx	    [54 52]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    153
+    dataCnt		    [1 1 0 0]
+  }
+  decision {
+    id			    154
+    modelcov		    2
+    slsfobj		    24
+    descriptor		    155
+    outMsgs		    [156 157]
+    dc			    [2 0 55 0]
+  }
+  message {
+    id			    155
+    keyNum		    164
+    startChar		    1
+    length		    49
+  }
+  message {
+    id			    156
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    157
+    keyNum		    158
+    startChar		    50
+  }
+  codeblock {
+    id			    158
+    slsfobj		    24
+    code		    "[Controller_State_Out == Controller.StallRecovery]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  metric {
+    id			    159
+    baseObjs		    [161]
+    dataIdx		    [59 57]
+    justifiedDataIdx	    [60 58]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    160
+    dataCnt		    [1 1 0 0]
+  }
+  decision {
+    id			    161
+    modelcov		    2
+    slsfobj		    25
+    descriptor		    162
+    outMsgs		    [163 164]
+    dc			    [2 0 61 0]
+  }
+  message {
+    id			    162
+    keyNum		    164
+    startChar		    1
+    length		    41
+  }
+  message {
+    id			    163
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    164
+    keyNum		    158
+    startChar		    42
+  }
+  codeblock {
+    id			    165
+    slsfobj		    25
+    code		    "[Controller_State_Out == Controller.Climb]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  metric {
+    id			    166
+    baseObjs		    [168]
+    dataIdx		    [65 63]
+    justifiedDataIdx	    [66 64]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    167
+    dataCnt		    [1 1 0 0]
+  }
+  decision {
+    id			    168
+    modelcov		    2
+    slsfobj		    26
+    descriptor		    169
+    outMsgs		    [170 171]
+    dc			    [2 0 67 0]
+  }
+  message {
+    id			    169
+    keyNum		    164
+    startChar		    1
+    length		    42
+  }
+  message {
+    id			    170
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    171
+    keyNum		    158
+    startChar		    43
+  }
+  codeblock {
+    id			    172
+    slsfobj		    26
+    code		    "[Controller_State_Out == Controller.Normal]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  metric {
+    id			    173
+    baseObjs		    [175]
+    dataIdx		    [71 69]
+    justifiedDataIdx	    [72 70]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    174
+    dataCnt		    [1 1 0 0]
+  }
+  decision {
+    id			    175
+    modelcov		    2
+    slsfobj		    27
+    descriptor		    176
+    outMsgs		    [177 178]
+    dc			    [2 0 73 0]
+  }
+  message {
+    id			    176
+    keyNum		    164
+    startChar		    1
+    length		    42
+  }
+  message {
+    id			    177
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    178
+    keyNum		    158
+    startChar		    43
+  }
+  codeblock {
+    id			    179
+    slsfobj		    27
+    code		    "[Controller_State_Out == Controller.Normal]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+}
