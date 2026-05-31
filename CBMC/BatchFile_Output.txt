@@ -1,0 +1,39 @@
+D:\CBMC>BatchFile.bat
+
+D:CBMC\>cbmc --version
+6.8.0 (cbmc-6.8.0)
+
+D:\CBMC>echo 27-05-2026  8:44:04.18
+27-05-2026  8:44:04.18
+
+D:\CBMC>cbmc --unwind 10 --unwinding-assertions main2_Bounded.c   1>>10iter.txt
+cl : Command line warning D9002 : ignoring unknown option '/source-charset:utf-8'
+main2_Bounded.c
+file main2_Bounded.c line 110 function get_externl_inputs: function 'nondet_int' is not declared
+cl : Command line warning D9002 : ignoring unknown option '/source-charset:utf-8'
+tmp.stdin26224.YzBaaa.c
+
+D:\CBMC>echo 27-05-2026  8:44:05.43
+27-05-2026  8:44:05.43
+
+D:\CBMC>cbmc --unwind 50 --unwinding-assertions main2_Bounded.c  1>>50iter.txt
+cl : Command line warning D9002 : ignoring unknown option '/source-charset:utf-8'
+main2_Bounded.c
+file main2_Bounded.c line 110 function get_externl_inputs: function 'nondet_int' is not declared
+cl : Command line warning D9002 : ignoring unknown option '/source-charset:utf-8'
+tmp.stdin29040.EvEaaa.c
+
+D:\CBMC>echo 27-05-2026  8:54:34.58
+27-05-2026  8:54:34.58
+
+D:\CBMC>cbmc --unwind 100 --unwinding-assertions main2_Bounded.c  1>>100iter.txt
+cl : Command line warning D9002 : ignoring unknown option '/source-charset:utf-8'
+main2_Bounded.c
+file main2_Bounded.c line 110 function get_externl_inputs: function 'nondet_int' is not declared
+cl : Command line warning D9002 : ignoring unknown option '/source-charset:utf-8'
+tmp.stdin15968.iUqaaa.c
+
+D:\CBMC>echo 27-05-2026 15:06:33.32
+27-05-2026 15:06:33.32
+
+D:\CBMC>

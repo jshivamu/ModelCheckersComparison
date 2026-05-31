@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
+    <org.eventb.core.carrierSet name="'" org.eventb.core.identifier="mode"/>
+    <org.eventb.core.constant name="(" org.eventb.core.identifier="normal"/>
+    <org.eventb.core.constant name=")" org.eventb.core.identifier="climb"/>
+    <org.eventb.core.constant name="*" org.eventb.core.identifier="stall_recovery"/>
+    <org.eventb.core.constant name="+" org.eventb.core.identifier="max_throttle_increase"/>
+    <org.eventb.core.constant name="," org.eventb.core.identifier="min_throttle"/>
+    <org.eventb.core.constant name="-" org.eventb.core.identifier="max_throttle"/>
+    <org.eventb.core.axiom name="." org.eventb.core.label="axm1" org.eventb.core.predicate="partition(mode, {climb}, {stall_recovery}, {normal})"/>
+    <org.eventb.core.axiom name="/" org.eventb.core.label="axm2" org.eventb.core.predicate="stall_speed = 30"/>
+    <org.eventb.core.axiom name="0" org.eventb.core.label="axm3" org.eventb.core.predicate="max_throttle_increase = 10"/>
+    <org.eventb.core.axiom name="1" org.eventb.core.label="axm4" org.eventb.core.predicate="min_throttle = 40"/>
+    <org.eventb.core.axiom name="2" org.eventb.core.label="axm5" org.eventb.core.predicate="max_throttle = 100"/>
+    <org.eventb.core.constant name="3" org.eventb.core.identifier="stall_speed"/>
+</org.eventb.core.contextFile>

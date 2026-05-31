@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.scContextFile org.eventb.core.accurate="true" org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase">
+    <org.eventb.core.scAxiom name="'" org.eventb.core.label="axm1" org.eventb.core.predicate="partition(mode,{climb},{stall_recovery},{normal})" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#." org.eventb.core.theorem="false"/>
+    <org.eventb.core.scAxiom name="(" org.eventb.core.label="axm2" org.eventb.core.predicate="stall_speed=30" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#\/" org.eventb.core.theorem="false"/>
+    <org.eventb.core.scAxiom name=")" org.eventb.core.label="axm3" org.eventb.core.predicate="max_throttle_increase=10" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#0" org.eventb.core.theorem="false"/>
+    <org.eventb.core.scAxiom name="*" org.eventb.core.label="axm4" org.eventb.core.predicate="min_throttle=40" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#1" org.eventb.core.theorem="false"/>
+    <org.eventb.core.scAxiom name="+" org.eventb.core.label="axm5" org.eventb.core.predicate="max_throttle=100" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#2" org.eventb.core.theorem="false"/>
+    <org.eventb.core.scConstant name="stall_speed" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.constant#3" org.eventb.core.type="ℤ"/>
+    <org.eventb.core.scConstant name="stall_recovery" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.constant#*" org.eventb.core.type="mode"/>
+    <org.eventb.core.scCarrierSet name="mode" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.carrierSet#'" org.eventb.core.type="ℙ(mode)"/>
+    <org.eventb.core.scConstant name="climb" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.constant#)" org.eventb.core.type="mode"/>
+    <org.eventb.core.scConstant name="max_throttle_increase" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.constant#+" org.eventb.core.type="ℤ"/>
+    <org.eventb.core.scConstant name="max_throttle" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.constant#-" org.eventb.core.type="ℤ"/>
+    <org.eventb.core.scConstant name="normal" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.constant#(" org.eventb.core.type="mode"/>
+    <org.eventb.core.scConstant name="min_throttle" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.constant#," org.eventb.core.type="ℤ"/>
+</org.eventb.core.scContextFile>

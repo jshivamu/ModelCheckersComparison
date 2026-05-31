@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="24">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="mode" org.eventb.core.type="ℙ(mode)"/>
+        <org.eventb.core.poIdentifier name="stall_speed" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="stall_recovery" org.eventb.core.type="mode"/>
+        <org.eventb.core.poIdentifier name="climb" org.eventb.core.type="mode"/>
+        <org.eventb.core.poIdentifier name="max_throttle_increase" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="max_throttle" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="normal" org.eventb.core.type="mode"/>
+        <org.eventb.core.poIdentifier name="min_throttle" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poPredicate name="max_throttle_increasf" org.eventb.core.predicate="partition(mode,{climb},{stall_recovery},{normal})" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#."/>
+        <org.eventb.core.poPredicate name="max_throttle_increasg" org.eventb.core.predicate="stall_speed=30" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="max_throttle_increash" org.eventb.core.predicate="max_throttle_increase=10" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#0"/>
+        <org.eventb.core.poPredicate name="max_throttle_increasi" org.eventb.core.predicate="min_throttle=40" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#1"/>
+        <org.eventb.core.poPredicate name="max_throttle_increasj" org.eventb.core.predicate="max_throttle=100" org.eventb.core.source="/AltNSpeedControl/Ctx.buc|org.eventb.core.contextFile#Ctx|org.eventb.core.axiom#2"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="time_stall" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_stall_exit" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="pitch_angle" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="reference_altitude" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="temp_pitch" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_climb_exit" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="engine_throttle" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_climb" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="reference_airspeed" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="new_throttle" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="actual_altitude" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="current_mode" org.eventb.core.type="mode"/>
+        <org.eventb.core.poIdentifier name="actual_airspeed" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="inv13/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="current_mode=normal∧actual_airspeed&lt;stall_speed∧time_stall≥10⇒current_mode=stall_recovery" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#D"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#D"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv1/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="5000∈0 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#1"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#1"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv1\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD0"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="5000∈0 ‥ 10000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#2"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#2"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv3/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100∈0 ‥ 200" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#3"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#3"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv3\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD2"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv4/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="120∈0 ‥ 150" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#4"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#4"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv4\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD3"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv5/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#5"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#5"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv5\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD4"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv6/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="min_throttle≥min_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#6"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#6"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv6\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD5"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv8/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv8\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD7"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv9/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="min_throttle≤max_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#9"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#9"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv9\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD8"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv10/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#="/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#="/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv10\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD9"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv11/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="min_throttle∈−10000 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv11\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD10"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv12/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv12\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD11"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv14/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#G"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#G"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv14\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD13"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv15/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudf"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#INITIALISATION\/inv15\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD14"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudf" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="actual_airspeed'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_climb_exit'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_climb'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_stall_exit'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="pitch_angle'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="temp_pitch'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="engine_throttle'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="current_mode'" org.eventb.core.type="mode"/>
+        <org.eventb.core.poIdentifier name="actual_altitude'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_stall'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="new_throttle'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="reference_airspeed'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="reference_altitude'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudf" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudf" org.eventb.core.poStamp="24"/>
+    <org.eventb.core.poSequent name="AltNSpeedControlLoopNormal/grd1/THM" org.eventb.core.accurate="true" org.eventb.core.poDesc="Theorem" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudg"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="current_mode=normal" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.guard#'"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.guard#'"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudg"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlLoopNormal/inv8/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudg"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlLoopNormal\/inv8\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD7"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlLoopNormal/inv10/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudg"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#="/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#="/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlLoopNormal\/inv10\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD9"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlLoopNormal/inv11/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudg"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="engine_throttle+(reference_airspeed − actual_airspeed) ÷ 10∈−10000 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlLoopNormal\/inv11\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD10"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlLoopNormal/inv12/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudg"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="(reference_altitude − actual_altitude) ÷ 100∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlLoopNormal\/inv12\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD11"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlLoopNormal/act1/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of action" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudg"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100≠0" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.action#*"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.action#*"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudg"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlLoopNormal/act2/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of action" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudg"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="10≠0" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.action#+"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.action#+"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudg"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudg" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="time_climb'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="temp_pitch'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_stall'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="new_throttle'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudg" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudg" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="current_mode=normal" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="actual_airspeed≥stall_speed" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="reference_altitude&lt;actual_altitude+100" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#:|org.eventb.core.guard#)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="AltNSpeedControlStallSpeed/inv8/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudh"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="time_stall+1∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlStallSpeed\/inv8\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD7"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlStallSpeed/inv11/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudh"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="engine_throttle+(reference_airspeed − actual_airspeed) ÷ 10∈−10000 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlStallSpeed\/inv11\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD10"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlStallSpeed/inv12/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudh"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="(reference_altitude − actual_altitude) ÷ 1000∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlStallSpeed\/inv12\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD11"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlStallSpeed/act2/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of action" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudh"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="1000≠0" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@|org.eventb.core.action#+"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@|org.eventb.core.action#+"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudh"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlStallSpeed/act3/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of action" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudh"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="10≠0" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@|org.eventb.core.action#,"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@|org.eventb.core.action#,"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudh"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudh" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="temp_pitch'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="time_stall'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="new_throttle'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudh" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudh" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="current_mode=normal" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="actual_airspeed&lt;stall_speed" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="time_stall&lt;100" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#@|org.eventb.core.guard#*"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="AltNSpeedControlToStallRecovery/inv11/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudi"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100∈−10000 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#A"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlToStallRecovery\/inv11\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD10"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlToStallRecovery/inv12/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudi"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="(reference_altitude − actual_altitude) ÷ 100∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#A"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlToStallRecovery\/inv12\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD11"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlToStallRecovery/inv15/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudi"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#A"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#AltNSpeedControlToStallRecovery\/inv15\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD14"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="AltNSpeedControlToStallRecovery/act4/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of action" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudi"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100≠0" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#A|org.eventb.core.action#-"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#A|org.eventb.core.action#-"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudi"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudi" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="time_stall_exit'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="temp_pitch'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="current_mode'" org.eventb.core.type="mode"/>
+        <org.eventb.core.poIdentifier name="new_throttle'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudi" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudi" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="current_mode=normal" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#A|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="time_stall≥100" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#A|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="actual_airspeed&lt;stall_speed" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#A|org.eventb.core.guard#)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="StallRecoveryImproving/inv11/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudj"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100∈−10000 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#I"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallRecoveryImproving\/inv11\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD10"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallRecoveryImproving/inv12/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudj"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="(reference_altitude − actual_altitude) ÷ 100∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#I"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallRecoveryImproving\/inv12\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD11"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallRecoveryImproving/inv15/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudj"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="time_stall_exit+1∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#I"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallRecoveryImproving\/inv15\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD14"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallRecoveryImproving/act3/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of action" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudj"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100≠0" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#I|org.eventb.core.action#,"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#I|org.eventb.core.action#,"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudj"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudj" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="time_stall_exit'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="temp_pitch'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="new_throttle'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudj" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudj" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="current_mode=stall_recovery" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#I|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="actual_airspeed≥stall_speed+5" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#I|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="time_stall_exit&lt;100" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#I|org.eventb.core.guard#)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="StallRecovered/inv8/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudk"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#K"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallRecovered\/inv8\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD7"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallRecovered/inv11/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudk"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="engine_throttle∈−10000 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#K"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallRecovered\/inv11\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD10"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallRecovered/inv12/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudk"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="(reference_altitude − actual_altitude) ÷ 100∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#K"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallRecovered\/inv12\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD11"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallRecovered/act4/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of action" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudk"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100≠0" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#K|org.eventb.core.action#-"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#K|org.eventb.core.action#-"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudk"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudk" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="temp_pitch'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="current_mode'" org.eventb.core.type="mode"/>
+        <org.eventb.core.poIdentifier name="time_stall'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="new_throttle'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudk" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudk" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="current_mode=stall_recovery" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#K|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="time_stall_exit≥100" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#K|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="actual_airspeed≥stall_speed+5" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#K|org.eventb.core.guard#)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="StallContinues/inv11/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudl"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100∈−10000 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#J"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallContinues\/inv11\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD10"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallContinues/inv12/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudl"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="(reference_altitude − actual_altitude) ÷ 100∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#J"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallContinues\/inv12\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD11"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallContinues/inv15/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudl"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="0∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#J"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#StallContinues\/inv15\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD14"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="StallContinues/act2/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of action" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudl"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="100≠0" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#J|org.eventb.core.action#*"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#J|org.eventb.core.action#*"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudl"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudl" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="time_stall_exit'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="temp_pitch'" org.eventb.core.type="ℤ"/>
+        <org.eventb.core.poIdentifier name="new_throttle'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudl" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudl" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="current_mode=stall_recovery" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#J|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="actual_airspeed&lt;stall_speed+5" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#J|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="UpdateThrottleWithinRateLimit/inv6/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudm"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="new_throttle≥min_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#6"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#L"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#6"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#UpdateThrottleWithinRateLimit\/inv6\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD5"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="UpdateThrottleWithinRateLimit/inv9/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudm"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="new_throttle≤max_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#9"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#L"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#9"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#UpdateThrottleWithinRateLimit\/inv9\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD8"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudm" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="engine_throttle'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudm" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudm" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="new_throttle − engine_throttle≤max_throttle_increase" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#L|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="new_throttle≤max_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#L|org.eventb.core.guard#*"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="new_throttle≥min_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#L|org.eventb.core.guard#+"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="UpdateThrottleAboveRateLimit/inv6/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudn"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="engine_throttle+max_throttle_increase≥min_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#6"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#M"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#6"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#UpdateThrottleAboveRateLimit\/inv6\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD5"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="UpdateThrottleAboveRateLimit/inv9/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTALLHYPreference_altitudn"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="engine_throttle+max_throttle_increase≤max_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#9"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#M"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#9"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poSequent#UpdateThrottleAboveRateLimit\/inv9\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu,|org.eventb.core.poPredicate#PRD8"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTreference_altitudn" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poIdentifier name="engine_throttle'" org.eventb.core.type="ℤ"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPreference_altitudn" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#EVTIDENTreference_altitudn" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="new_throttle − engine_throttle&gt;max_throttle_increase" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#M|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="engine_throttle≤max_throttle − max_throttle_increase" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.event#M|org.eventb.core.guard#)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="HYPCu," org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="actual_altitude∈0 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#1"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="reference_altitude∈0 ‥ 10000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#2"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="actual_airspeed∈0 ‥ 200" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#3"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="reference_airspeed∈0 ‥ 150" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#4"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="pitch_angle∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#5"/>
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="engine_throttle≥min_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#6"/>
+        <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="current_mode∈mode" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#7"/>
+        <org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="time_stall∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poPredicate name="PRD8" org.eventb.core.predicate="engine_throttle≤max_throttle" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#9"/>
+        <org.eventb.core.poPredicate name="PRD9" org.eventb.core.predicate="time_climb∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#="/>
+        <org.eventb.core.poPredicate name="PRD10" org.eventb.core.predicate="new_throttle∈−10000 ‥ 20000" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#B"/>
+        <org.eventb.core.poPredicate name="PRD11" org.eventb.core.predicate="temp_pitch∈−20 ‥ 20" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#C"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/AltNSpeedControl/AltNSpeedControl.bpo|org.eventb.core.poFile#AltNSpeedControl|org.eventb.core.poPredicateSet#HYPCu," org.eventb.core.poStamp="24">
+        <org.eventb.core.poPredicate name="PRD12" org.eventb.core.predicate="current_mode=normal∧actual_airspeed&lt;stall_speed∧time_stall≥10⇒current_mode=stall_recovery" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#D"/>
+        <org.eventb.core.poPredicate name="PRD13" org.eventb.core.predicate="time_climb_exit∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#G"/>
+        <org.eventb.core.poPredicate name="PRD14" org.eventb.core.predicate="time_stall_exit∈0 ‥ 101" org.eventb.core.source="/AltNSpeedControl/AltNSpeedControl.bum|org.eventb.core.machineFile#AltNSpeedControl|org.eventb.core.invariant#H"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

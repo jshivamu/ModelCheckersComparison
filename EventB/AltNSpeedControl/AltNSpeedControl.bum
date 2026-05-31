@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="(" org.eventb.core.assignment="current_mode ≔ normal" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="actual_altitude ≔ 5000" org.eventb.core.label="act3"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="actual_airspeed ≔ 100" org.eventb.core.label="act4"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="reference_altitude ≔ 5000" org.eventb.core.label="act5"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="reference_airspeed ≔ 120" org.eventb.core.label="act6"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="time_stall ≔ 0" org.eventb.core.label="act7"/>
+        <org.eventb.core.action name="." org.eventb.core.assignment="pitch_angle ≔ 0" org.eventb.core.label="act8"/>
+        <org.eventb.core.action name="2" org.eventb.core.assignment="new_throttle ≔ min_throttle" org.eventb.core.label="act12"/>
+        <org.eventb.core.action name="/" org.eventb.core.assignment="engine_throttle ≔ min_throttle" org.eventb.core.label="act9"/>
+        <org.eventb.core.action name="0" org.eventb.core.assignment="time_climb ≔ 0" org.eventb.core.label="act10"/>
+        <org.eventb.core.action name="1" org.eventb.core.assignment="temp_pitch ≔ 0" org.eventb.core.label="act11"/>
+        <org.eventb.core.action name="3" org.eventb.core.assignment="time_stall_exit ≔ 0" org.eventb.core.label="act13"/>
+        <org.eventb.core.action name="4" org.eventb.core.assignment="time_climb_exit ≔ 0" org.eventb.core.label="act14"/>
+    </org.eventb.core.event>
+    <org.eventb.core.seesContext name="(" org.eventb.core.target="Ctx"/>
+    <org.eventb.core.variable name=")" org.eventb.core.identifier="actual_altitude"/>
+    <org.eventb.core.variable name="*" org.eventb.core.identifier="reference_altitude"/>
+    <org.eventb.core.variable name="+" org.eventb.core.identifier="actual_airspeed"/>
+    <org.eventb.core.variable name="," org.eventb.core.identifier="reference_airspeed"/>
+    <org.eventb.core.variable name="-" org.eventb.core.identifier="pitch_angle"/>
+    <org.eventb.core.variable name="." org.eventb.core.identifier="engine_throttle"/>
+    <org.eventb.core.variable name="/" org.eventb.core.identifier="current_mode"/>
+    <org.eventb.core.variable name="0" org.eventb.core.identifier="time_stall"/>
+    <org.eventb.core.invariant name="1" org.eventb.core.label="inv1" org.eventb.core.predicate="actual_altitude ∈ 0‥20000"/>
+    <org.eventb.core.invariant name="2" org.eventb.core.label="inv2" org.eventb.core.predicate="reference_altitude ∈ 0‥10000"/>
+    <org.eventb.core.invariant name="3" org.eventb.core.label="inv3" org.eventb.core.predicate="actual_airspeed ∈ 0‥200"/>
+    <org.eventb.core.invariant name="4" org.eventb.core.label="inv4" org.eventb.core.predicate="reference_airspeed ∈ 0‥150"/>
+    <org.eventb.core.invariant name="5" org.eventb.core.label="inv5" org.eventb.core.predicate="pitch_angle ∈ −20‥20"/>
+    <org.eventb.core.invariant name="6" org.eventb.core.label="inv6" org.eventb.core.predicate="engine_throttle ≥ min_throttle"/>
+    <org.eventb.core.invariant name="7" org.eventb.core.label="inv7" org.eventb.core.predicate="current_mode ∈ mode" org.eventb.core.theorem="true"/>
+    <org.eventb.core.invariant name="8" org.eventb.core.label="inv8" org.eventb.core.predicate="time_stall ∈ 0‥101"/>
+    <org.eventb.core.invariant name="9" org.eventb.core.label="inv9" org.eventb.core.predicate="engine_throttle ≤ max_throttle"/>
+    <org.eventb.core.event name=":" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="AltNSpeedControlLoopNormal">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="current_mode = normal" org.eventb.core.theorem="true"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="actual_airspeed ≥ stall_speed"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd3" org.eventb.core.predicate="reference_altitude &lt; (actual_altitude + 100)"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="temp_pitch ≔ (reference_altitude − actual_altitude)÷100" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="new_throttle ≔ engine_throttle + (reference_airspeed − actual_airspeed)÷10" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="time_climb ≔ 0" org.eventb.core.label="act3"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="time_stall ≔ 0" org.eventb.core.label="act4"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name=";" org.eventb.core.identifier="time_climb"/>
+    <org.eventb.core.invariant name="=" org.eventb.core.label="inv10" org.eventb.core.predicate="time_climb ∈ 0‥101 "/>
+    <org.eventb.core.variable name="&gt;" org.eventb.core.identifier="temp_pitch"/>
+    <org.eventb.core.variable name="?" org.eventb.core.identifier="new_throttle"/>
+    <org.eventb.core.event name="@" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="AltNSpeedControlStallSpeed">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="current_mode = normal"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="actual_airspeed &lt; stall_speed"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="time_stall ≔ time_stall + 1" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="*" org.eventb.core.label="grd3" org.eventb.core.predicate="time_stall &lt; 100"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="temp_pitch ≔ (reference_altitude − actual_altitude)÷1000" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="new_throttle ≔ engine_throttle + (reference_airspeed − actual_airspeed)÷10" org.eventb.core.label="act3"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="A" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="AltNSpeedControlToStallRecovery">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="current_mode = normal"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="time_stall ≥ 100"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd3" org.eventb.core.predicate="actual_airspeed &lt; stall_speed"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="current_mode ≔ stall_recovery" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="time_stall_exit ≔ 0" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="new_throttle ≔ 100" org.eventb.core.label="act3"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="temp_pitch ≔ (reference_altitude − actual_altitude)÷100" org.eventb.core.label="act4"/>
+    </org.eventb.core.event>
+    <org.eventb.core.invariant name="B" org.eventb.core.label="inv11" org.eventb.core.predicate="new_throttle ∈ −10000‥20000 "/>
+    <org.eventb.core.invariant name="C" org.eventb.core.label="inv12" org.eventb.core.predicate="temp_pitch ∈ −20‥20"/>
+    <org.eventb.core.invariant name="D" org.eventb.core.label="inv13" org.eventb.core.predicate="((current_mode = normal ∧ actual_airspeed &lt; stall_speed ∧ (time_stall ≥ 10)) ⇒ current_mode = stall_recovery)" org.eventb.core.theorem="true"/>
+    <org.eventb.core.variable name="E" org.eventb.core.identifier="time_climb_exit"/>
+    <org.eventb.core.variable name="F" org.eventb.core.identifier="time_stall_exit"/>
+    <org.eventb.core.invariant name="G" org.eventb.core.label="inv14" org.eventb.core.predicate="time_climb_exit ∈ 0‥101 "/>
+    <org.eventb.core.invariant name="H" org.eventb.core.label="inv15" org.eventb.core.predicate="time_stall_exit ∈ 0‥101"/>
+    <org.eventb.core.event name="I" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="StallRecoveryImproving">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="current_mode = stall_recovery"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="actual_airspeed ≥ (stall_speed + 5)"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd3" org.eventb.core.predicate="time_stall_exit &lt; 100"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="time_stall_exit ≔ time_stall_exit + 1" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="new_throttle ≔ 100" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="temp_pitch ≔ (reference_altitude − actual_altitude)÷100" org.eventb.core.label="act3"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="K" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="StallRecovered">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="current_mode = stall_recovery"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="time_stall_exit ≥ 100"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd3" org.eventb.core.predicate="actual_airspeed ≥ (stall_speed + 5)"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="current_mode ≔ normal" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="time_stall ≔ 0" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="new_throttle ≔ engine_throttle" org.eventb.core.label="act3"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="temp_pitch ≔ (reference_altitude − actual_altitude)÷100" org.eventb.core.label="act4"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="J" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="StallContinues">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="current_mode = stall_recovery"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="actual_airspeed &lt; (stall_speed + 5)"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="new_throttle ≔ 100" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="temp_pitch ≔ (reference_altitude − actual_altitude)÷100" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="time_stall_exit ≔ 0" org.eventb.core.label="act3"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="L" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="UpdateThrottleWithinRateLimit">
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="((new_throttle − engine_throttle) ≤ max_throttle_increase)"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="engine_throttle ≔ new_throttle" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="*" org.eventb.core.label="grd3" org.eventb.core.predicate="new_throttle ≤ max_throttle"/>
+        <org.eventb.core.guard name="+" org.eventb.core.label="grd4" org.eventb.core.predicate="new_throttle ≥ min_throttle"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="M" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="UpdateThrottleAboveRateLimit">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="(new_throttle − engine_throttle) &gt; max_throttle_increase"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="engine_throttle ≔ engine_throttle + max_throttle_increase" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd2" org.eventb.core.predicate="engine_throttle ≤ max_throttle − max_throttle_increase"/>
+    </org.eventb.core.event>
+</org.eventb.core.machineFile>

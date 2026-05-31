@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+// Constants
+const int STALL_SPEED = 2000; // Example stall speed in m/s
+const int ALT_DIFF_THRESHOLD = 10; // Altitude difference for Climb mode
+const int ALT_GAIN_PITCH = 500; // Pitch up angle in Climb mode
+const int THROTTLE_MAX = 10000; // Maximum throttle percentage
+const int THROTTLE_RATE_LIMIT = 1000; // Max throttle rise per second
+const int PITCH_MAX_LIMIT = 2000;    //Max limit on pitch angle
+const int PITCH_MIN_LIMIT = -2000; //Min limit on pitch angle
+const int ONE_SECOND = 100;
+const int EXECUTION_RATE = 100; //1000 EXECUTIONS PER SECOND
+// Global variables
+int actualAltitude;
+int referenceAltitude;
+int actualAirspeed;
+int referenceAirspeed;
+int pitchAngle;
+int engineThrottle;
+
+
+// Clocks for timing
+clock t_alt_diff; // For altitude difference duration
+clock t_stall_speed; // For stall speed duration
+clock t_exit_climb; // For exiting climb mode
+clock t_stall_exit; // For exiting stall recovery mode
+clock t_throttle_update; // For throttle rate limiting
+
+// Channels for synchronization
+chan enterClimb, exitClimb, enterStallRecovery, exitStallRecovery;
+chan sensorUpdate;
+</declaration>
+	<template>
+		<name>Sensor</name>
+		<declaration>int count;
+void updateSensorReadings()
+{
+    referenceAltitude = 1000; // + fint(random(100));
+    referenceAirspeed = 2000; // + fint(random(50));
+    actualAltitude = referenceAltitude - 50*count; // + fint(random(10))); // Simulate altitude changes
+    //actualAltitude = 500;
+    actualAirspeed = referenceAirspeed - 100; //(-2 + fint(random(4))); // Simulate airspeed changes
+    //actualAirspeed = 1000;
+    if (actualAltitude &lt; 0) actualAltitude = 0; // Altitude can't be negative
+    if (actualAirspeed &lt; 0) actualAirspeed = 0; // Airspeed can't be negative
+    
+    count++;
+    if(count &gt;= 20) count = 0;
+}</declaration>
+		<location id="id0" x="0" y="0">
+			<name x="-10" y="-34">Sensing</name>
+		</location>
+		<init ref="id0"/>
+		<transition id="id1">
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-238" y="-9">true</label>
+			<label kind="synchronisation" x="-238" y="14">sensorUpdate!</label>
+			<label kind="assignment" x="-238" y="25">updateSensorReadings()</label>
+			<nail x="-256" y="63"/>
+			<nail x="-239" y="-72"/>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">FCC_Mode_Manager</name>
+		<declaration>// Place local declarations here.
+
+void updateThrottle(int newThrottle)
+{
+    
+    if(newThrottle &gt; (engineThrottle + THROTTLE_RATE_LIMIT/EXECUTION_RATE))
+    {
+        engineThrottle = engineThrottle + THROTTLE_RATE_LIMIT/EXECUTION_RATE;
+    }
+    else 
+    {
+        engineThrottle = newThrottle; 
+    }
+
+    if(engineThrottle &gt; THROTTLE_MAX) engineThrottle = THROTTLE_MAX;
+}
+
+void updatePitch()
+{
+    int altDiff = referenceAltitude - actualAltitude;
+    pitchAngle = altDiff/10;
+    if(pitchAngle &gt; PITCH_MAX_LIMIT) pitchAngle = PITCH_MAX_LIMIT;
+    if(pitchAngle &lt; PITCH_MIN_LIMIT) pitchAngle = PITCH_MIN_LIMIT;   
+}
+
+void updatePitchAndThrottleNormal()
+{
+    int diffSpeed;
+    int altDiff = referenceAltitude - actualAltitude;
+    //if(altDiff &lt; ALT_DIFF_THRESHOLD)
+    //    t_alt_diff = 0;
+    updatePitch();
+    //Handle setThrottle
+    diffSpeed = referenceAirspeed - actualAirspeed;
+    updateThrottle(diffSpeed/10);
+    
+    //if(actualAirspeed &gt;= STALL_SPEED)
+    //    t_stall_speed = 0;
+}
+
+void updatePitchAndThrottleClimb()
+{
+    double altDiff = referenceAltitude - actualAltitude;
+    //if(altDiff &gt; 0.0)
+    //    t_exit_climb = 0;
+    pitchAngle = ALT_GAIN_PITCH;
+    updateThrottle(100);
+
+    //if(actualAirspeed &gt;= STALL_SPEED)
+    //    t_stall_speed = 0;
+}
+
+void updatePitchAndThrottleStallRecovery()
+{
+    updatePitch();
+    if(pitchAngle &gt; 0) pitchAngle = 0;
+    updateThrottle(100);
+
+    //if(actualAirspeed &lt; (STALL_SPEED + 5))
+     //   t_stall_exit = 0;
+}</declaration>
+		<location id="id2" x="-178" y="-136">
+			<name x="-188" y="-170">Normal</name>
+		</location>
+		<location id="id3" x="-416" y="187">
+			<name x="-426" y="153">Climb</name>
+		</location>
+		<location id="id4" x="161" y="195">
+			<name x="187" y="170">StallRecovery</name>
+		</location>
+		<init ref="id2"/>
+		<transition id="id5">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-85" y="-229">(referenceAltitude - actualAltitude) &gt;= 100</label>
+			<label kind="synchronisation" x="34" y="-212">sensorUpdate?</label>
+			<label kind="assignment" x="-127" y="-195">updatePitchAndThrottleNormal(), t_alt_diff = t_alt_diff + 1</label>
+			<nail x="127" y="-136"/>
+			<nail x="76" y="-238"/>
+		</transition>
+		<transition id="id6">
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="212" y="221">sensorUpdate?</label>
+			<label kind="assignment" x="187" y="238">updatePitchAndThrottleStallRecovery()</label>
+			<nail x="314" y="195"/>
+			<nail x="204" y="272"/>
+		</transition>
+		<transition id="id7">
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-637" y="195">sensorUpdate?</label>
+			<label kind="assignment" x="-654" y="212">updatePitchAndThrottleClimb()</label>
+			<nail x="-595" y="178"/>
+			<nail x="-510" y="255"/>
+		</transition>
+		<transition id="id8">
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-578" y="-195">(referenceAltitude - actualAltitude) &lt; 100</label>
+			<label kind="synchronisation" x="-467" y="-246">sensorUpdate?</label>
+			<label kind="assignment" x="-620" y="-221">updatePitchAndThrottleNormal(), t_alt_diff = 0</label>
+			<nail x="-409" y="-170"/>
+			<nail x="-290" y="-238"/>
+		</transition>
+		<transition id="id9">
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-807" y="51">(t_exit_climb &gt;= ONE_SECOND)</label>
+			<label kind="synchronisation" x="-704" y="80">exitClimb!</label>
+			<label kind="assignment" x="-704" y="97">t_exit_climb = 0</label>
+			<nail x="-722" y="8"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id4"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-59" y="-93">(actualAirspeed &gt;= STALL_SPEED + 5 &amp;&amp; t_stall_exit &gt;= ONE_SECOND)</label>
+			<label kind="synchronisation" x="76" y="-68">exitStallRecovery!</label>
+			<label kind="assignment" x="127" y="-51">t_stall_exit = 0</label>
+			<nail x="314" y="42"/>
+		</transition>
+		<transition id="id11">
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-357" y="153">(actualAirspeed &lt; STALL_SPEED &amp;&amp; t_stall_speed &gt;= ONE_SECOND)</label>
+			<label kind="synchronisation" x="-204" y="170">enterStallRecovery!</label>
+			<label kind="assignment" x="-204" y="187">t_stall_speed = 0</label>
+		</transition>
+		<transition id="id12">
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="guard" x="-221" y="76">(actualAirspeed &lt; STALL_SPEED &amp;&amp; t_stall_speed &gt;= ONE_SECOND)</label>
+			<label kind="synchronisation" x="-68" y="59">enterStallRecovery!</label>
+			<label kind="assignment" x="-59" y="42">t_stall_speed = 0</label>
+		</transition>
+		<transition id="id13">
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-459" y="8">t_alt_diff &gt;= ONE_SECOND</label>
+			<label kind="assignment" x="-398" y="25">t_alt_diff = 0</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+system FCC_Mode_Manager, Sensor;
+
+// List one or more processes to be composed into a system.
+//system Process;
+</system>
+	<queries>
+		<query>
+			<formula>A[] (actualAirspeed &lt; STALL_SPEED imply (pitchAngle &lt;= 0))</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2025-07-05 20:58:38 +0530">
+			</result>
+		</query>
+		<query>
+			<formula>A[] (actualAirspeed &lt; STALL_SPEED imply (engineThrottle &gt;= 100))</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2025-07-05 21:02:37 +0530">
+			</result>
+		</query>
+		<query>
+			<formula>A[] ((referenceAltitude - actualAltitude) &gt; ALT_DIFF_THRESHOLD imply (pitchAngle == 5))</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2025-07-05 21:00:03 +0530">
+			</result>
+		</query>
+		<query>
+			<formula>A[] ((FCC_Mode_Manager.Climb or FCC_Mode_Manager.StallRecovery) imply (engineThrottle == THROTTLE_MAX))</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2025-07-06 08:24:42 +0530">
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; FCC_Mode_Manager.Climb</formula>
+			<comment/>
+		</query>
+		<query>
+			<formula>A[] not deadlock</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2025-07-06 08:22:31 +0530">
+			</result>
+		</query>
+	</queries>
+</nta>

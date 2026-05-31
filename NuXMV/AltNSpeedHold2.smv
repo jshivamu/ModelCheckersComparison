@@ -1,0 +1,65 @@
+MODULE main
+DEFINE ALT_THRESHOLD := 100.0;
+DEFINE STALL_SPEED := 30.0;
+DEFINE PERSISTENCY := 100;
+DEFINE ref_speed := 40.0;
+DEFINE ref_alt := 500.0;
+
+VAR state : { normal, climb, stall_recovery };
+VAR climb_count : integer;
+VAR climb_exit : integer;
+VAR stall_recovery_count : integer;
+VAR stall_exit_count : integer;
+VAR act_speed : real;
+VAR act_alt : real;
+
+INVAR
+0.0 <= act_speed & act_speed <= 60.0;
+
+INVAR
+300.0 <= act_alt & act_alt <= 700.0;
+
+ASSIGN
+ init(state) := normal;
+ init(climb_count) := 0;
+ init(climb_exit) := 0;
+ init(stall_recovery_count) := 0;
+ init(stall_exit_count) := 0;
+ 
+ next(climb_count) := 
+	case
+		state = climb : 0;
+		((ref_alt - act_alt) >= ALT_THRESHOLD): climb_count + 1;		
+		TRUE: 0;
+	esac;
+
+ next(climb_exit) := 
+	case
+		state = climb & (act_alt > ref_alt): climb_exit + 1;		
+		TRUE: 0;
+	esac;
+	
+ next(stall_recovery_count) := 
+	case
+		state = stall_recovery : 0;
+		(act_speed < STALL_SPEED): stall_recovery_count + 1;		
+		TRUE: 0;
+	esac; 
+ 
+ next(stall_exit_count) := 
+	case
+		state = stall_recovery & (act_speed > (STALL_SPEED + 5.0)): 0;		
+		TRUE: 0;
+	esac; 
+ 
+ next(state) := 
+	case
+		(stall_recovery_count = 99) : stall_recovery;
+		state = stall_recovery & (stall_exit_count >= 100) & (climb_count >= 100): climb;
+		state = stall_recovery & (stall_exit_count >= 100) : normal;
+		state = normal & (climb_count >= 100) : climb;
+		state = climb & (climb_exit >= 100) : normal;
+		TRUE : state;
+	esac;
+	
+INVARSPEC ((stall_recovery_count >= 100) -> (state = stall_recovery));
